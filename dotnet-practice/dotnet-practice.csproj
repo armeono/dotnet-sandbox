@@ -10,7 +10,7 @@
   <ItemGroup>
     <Folder Include="Data/" />
     <Folder Include="Dtos/" />
-    <Folder Include="Dtos/Dtos/" />
+    <Folder Include="Dtos/DTOs/" />
     <Folder Include="Endpoints/" />
     <Folder Include="Models/" />
     <Folder Include="Services/" />
