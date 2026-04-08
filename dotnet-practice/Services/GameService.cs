@@ -1,6 +1,7 @@
 
 using dotnet_practice.Data;
 using dotnet_practice.dtos;
+using dotnet_practice.dtos.Mapping;
 using dotnet_practice.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,9 +27,14 @@ public class GameService
 
     }
 
-    public async Task<Game> GetGameById(int id)
+    public async Task<Game?> GetGameById(int id)
     {
         var game = await db.Games.Include(g => g.Genre).FirstOrDefaultAsync(g => g.Id == id);
+
+        if (game is null)
+        {
+            return null;
+        }
 
         return game;
     }
@@ -64,6 +70,7 @@ public class GameService
 
         game.Name = updatedGame.Name;
         game.Price = updatedGame.Price;
+        game.GenreId = updatedGame.GenreId;
         game.ReleaseDate = updatedGame.ReleaseDate;
 
 
@@ -71,6 +78,22 @@ public class GameService
 
         return true;
 
+    }
+
+    public async Task<bool> DeleteGame(int id)
+    {
+        var game = await db.Games.FindAsync(id);
+
+        if (game is null)
+        {
+            return false;
+        }
+
+        db.Games.Remove(game);
+
+        await db.SaveChangesAsync();
+
+        return true;
     }
 
 

@@ -1,5 +1,6 @@
 using dotnet_practice.Data;
 using dotnet_practice.dtos;
+using dotnet_practice.dtos.Mapping;
 using dotnet_practice.Models;
 using dotnet_practice.Services;
 using Microsoft.EntityFrameworkCore;
@@ -19,36 +20,52 @@ public static class GamesEndpoints
 
         group.MapGet("/", async (GameService gameService) =>
         {
-            return await gameService.GetGames();
+            var games = await gameService.GetGames();
+
+
+            return games.Select(g => GameMapper.ToGameDto(g)).ToList();
         });
 
         group.MapGet("/{id}", async (int id, GameService gameService) =>
         {
             var game = await gameService.GetGameById(id);
 
-            return Results.Ok(game);
+            if (game is null)
+            {
+                return Results.NotFound();
+            }
+
+            return Results.Ok(GameMapper.ToGameDto(game));
         }).WithName(GetGameByIdName);
 
         group.MapPost("/", async (GameService gameService, CreateGameDto requestGame) =>
         {
             var game = await gameService.CreateGame(requestGame);
 
-            return Results.Created($"/games/{game.Id}", game);
+            return Results.Created($"/games/{game.Id}", GameMapper.ToGameDto(game));
 
         });
 
         group.MapPut("/{id}", async (int id, UpdateGameDto updatedGame, GameService gameService) =>
         {
-            await gameService.UpdateGame(id, updatedGame);
+            var result = await gameService.UpdateGame(id, updatedGame);
+
+            if (result is false)
+            {
+                return Results.NotFound();
+            }
 
             return Results.NoContent();
         });
 
-        group.MapDelete("/{id}", (int id) =>
+        group.MapDelete("/{id}", async (int id, GameService gameService) =>
         {
+            var result = await gameService.DeleteGame(id);
 
-            // Implement delete
-
+            if (result is false)
+            {
+                return Results.NotFound();
+            }
 
             return Results.NoContent();
         });
