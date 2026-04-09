@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Folder Include="Data/" />
+    <Folder Include="Data/Configurations/" />
     <Folder Include="Dtos/" />
     <Folder Include="Dtos/DTOs/" />
     <Folder Include="dtos/Mapping/" />
