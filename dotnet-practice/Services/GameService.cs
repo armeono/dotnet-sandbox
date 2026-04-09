@@ -19,9 +19,9 @@ public class GameService
         this.httpClient = httpClient;
     }
 
-    public async Task<List<Game>> GetGames()
+    public async Task<List<Game>> GetGames(int page, int pageSize)
     {
-        var games = await db.Games.Include(g => g.Genre).ToListAsync();
+        var games = await db.Games.OrderBy(g => g.Id).Include(g => g.Genre).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
 
         return games;
 

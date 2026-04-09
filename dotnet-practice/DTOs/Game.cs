@@ -10,6 +10,8 @@ public record class GameDto(
     DateOnly ReleaseDate
 );
 
+
+
 public record UpdateGameDto(
     [Required][StringLength(50)] string Name,
     [Required] int GenreId,

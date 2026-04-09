@@ -18,12 +18,17 @@ public static class GamesEndpoints
 
         var group = app.MapGroup("/games");
 
-        group.MapGet("/", async (GameService gameService) =>
+        group.MapGet("/", async (GameService gameService, int page = 1, int pageSize = 10) =>
         {
-            var games = await gameService.GetGames();
+            if (page <= 0 || pageSize <= 0)
+            {
+                return Results.BadRequest("Page and pageSize must be greater than 0.");
+            }
+
+            var games = await gameService.GetGames(page, pageSize);
 
 
-            return games.Select(g => GameMapper.ToGameDto(g)).ToList();
+            return Results.Ok(games.Select(g => GameMapper.ToGameDto(g)).ToList());
         });
 
         group.MapGet("/{id}", async (int id, GameService gameService) =>
