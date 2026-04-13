@@ -1,6 +1,3 @@
-
-
-
 namespace dotnet_practice.dtos;
 
 public record class GenreDto(

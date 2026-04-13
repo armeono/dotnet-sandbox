@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="dotnet-practice.Tests/dotnet-practice.Tests.csproj" />
   <Project Path="dotnet-practice/dotnet-practice.csproj" />
 </Solution>

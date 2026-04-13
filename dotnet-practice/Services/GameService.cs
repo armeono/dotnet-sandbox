@@ -9,7 +9,6 @@ namespace dotnet_practice.Services;
 
 public class GameService
 {
-
     private GameStoreContext db;
     private HttpClient httpClient;
 

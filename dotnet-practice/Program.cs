@@ -10,6 +10,7 @@ builder.Services.AddHttpClient();
 
 
 builder.Services.AddScoped<GameService>();
+builder.Services.AddScoped<GenreService>();
 
 var app = builder.Build();
 
@@ -19,3 +20,4 @@ app.MapGenresEndpoints();
 app.MigrateDb();
 
 app.Run();
+
