@@ -66,7 +66,7 @@ public class GameServiceTests
 
         var httpClient = new HttpClient();
 
-        var service = new GameService(db, httpClient);
+        var service = new GameService(db, httpClient, null);
 
         var result = await service.GetGameById(999);
 
@@ -82,8 +82,7 @@ public class GameServiceTests
 
         var httpClient = new HttpClient();
 
-        var service = new GameService(db, httpClient);
-
+        var service = new GameService(db, httpClient, null);
 
         await service.CreateGame(new CreateGameDto(
          "Spiderman",

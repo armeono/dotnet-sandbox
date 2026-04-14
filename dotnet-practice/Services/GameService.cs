@@ -12,10 +12,13 @@ public class GameService
     private GameStoreContext db;
     private HttpClient httpClient;
 
-    public GameService(GameStoreContext db, HttpClient httpClient)
+    private readonly ILogger<GameService> logger;
+
+    public GameService(GameStoreContext db, HttpClient httpClient, ILogger<GameService>? logger)
     {
         this.db = db;
         this.httpClient = httpClient;
+        this.logger = logger;
     }
 
     public async Task<List<Game>> GetGames(int page, int pageSize)
@@ -32,6 +35,8 @@ public class GameService
 
         if (game is null)
         {
+
+            logger.LogWarning("Game with id {Id} not found.", id);
             return null;
         }
 
@@ -51,6 +56,8 @@ public class GameService
         db.Games.Add(game);
 
         await db.SaveChangesAsync();
+
+        logger.LogInformation("Game with id {Id} and name {Name} created.", game.Id, game.Name);
 
         return game;
 

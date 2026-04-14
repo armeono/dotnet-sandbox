@@ -144,3 +144,8 @@
 /Users/armanhadzigrahic/programming/dotnet-practice/dotnet-practice/obj/Debug/net10.0/dotnet-practice.csproj.AssemblyReference.cache
 /Users/armanhadzigrahic/programming/dotnet-practice/dotnet-practice/obj/Debug/net10.0/dotnet-p.3812F261.Up2Date
 /Users/armanhadzigrahic/programming/dotnet-practice/dotnet-practice/obj/Debug/net10.0/dotnet-practice.sourcelink.json
+/Users/armanhadzigrahic/programming/dotnet-practice/dotnet-practice/bin/Debug/net10.0/Microsoft.OpenApi.dll
+/Users/armanhadzigrahic/programming/dotnet-practice/dotnet-practice/bin/Debug/net10.0/Swashbuckle.AspNetCore.Swagger.dll
+/Users/armanhadzigrahic/programming/dotnet-practice/dotnet-practice/bin/Debug/net10.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/armanhadzigrahic/programming/dotnet-practice/dotnet-practice/bin/Debug/net10.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/armanhadzigrahic/programming/dotnet-practice/dotnet-practice/obj/Debug/net10.0/dotnet-practice.MvcApplicationPartsAssemblyInfo.cs
